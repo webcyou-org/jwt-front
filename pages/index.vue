@@ -1,68 +1,24 @@
 <template>
-  <section class="container">
-    <div>
-      <logo />
-      <h1 class="title">
-        jwt-front
-      </h1>
-      <h2 class="subtitle">
-        JWT（JSON Web Tokens） Certification Authorization Front Nuxt
-      </h2>
-      <div class="links">
-        <a
-          href="https://nuxtjs.org/"
-          target="_blank"
-          class="button--green"
-        >Documentation</a>
-        <a
-          href="https://github.com/nuxt/nuxt.js"
-          target="_blank"
-          class="button--grey"
-        >GitHub</a>
+  <div>
+    <b-jumbotron class="text-center">
+      <h3>Welcome to Nuxt.js auth example</h3>
+      <div class="mt-1">
+        <template v-if="$auth.$state.loggedIn">
+          <b-btn class="ml-3" variant="info" to="/secure">Secure</b-btn>
+          <b-btn class="ml-3" variant="danger" @click="$auth.logout()">Logout</b-btn>
+        </template>
+        <b-btn variant="success" v-else to="/login">Login</b-btn>
       </div>
+    </b-jumbotron>
+
+    <div>
+      User status:
+      <b-badge>{{ $auth.$state.loggedIn ? 'Logged In' : 'Guest' }}</b-badge>
     </div>
-  </section>
+  </div>
 </template>
 
 <script>
-import Logo from '~/components/Logo.vue'
-
 export default {
-  components: {
-    Logo
-  }
 }
 </script>
-
-<style>
-.container {
-  margin: 0 auto;
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-}
-
-.title {
-  font-family: 'Quicksand', 'Source Sans Pro', -apple-system, BlinkMacSystemFont,
-    'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-  display: block;
-  font-weight: 300;
-  font-size: 100px;
-  color: #35495e;
-  letter-spacing: 1px;
-}
-
-.subtitle {
-  font-weight: 300;
-  font-size: 42px;
-  color: #526488;
-  word-spacing: 5px;
-  padding-bottom: 15px;
-}
-
-.links {
-  padding-top: 15px;
-}
-</style>
