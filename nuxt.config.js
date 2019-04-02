@@ -80,5 +80,4 @@ if (process.env.NODE_ENV === 'development') {
   config.serverMiddleware = ['./api/auth']
 }
 
-module.exports = config
-
+export default config
